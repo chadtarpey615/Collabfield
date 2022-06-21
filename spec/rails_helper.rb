@@ -4,10 +4,6 @@ require 'capybara/poltergeist'
 require 'factory_girl_rails'
 require 'capybara/rspec'
 
-config.include Devise::Test::IntegrationHelpers, type: :feature
-config.include FactoryGirl::Syntax::Methods
-Capybara.javascript_driver = :poltergeist
-Capybara.server = :puma 
 
 ENV['RAILS_ENV'] ||= 'test'
 
@@ -68,6 +64,11 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+config.include Devise::Test::IntegrationHelpers, type: :feature
+config.include FactoryGirl::Syntax::Methods
+Capybara.javascript_driver = :poltergeist
+Capybara.server = :puma 
 
 
   # RSpec Rails can automatically mix in different behaviours to your tests
